@@ -1,6 +1,7 @@
 import { Bank } from "@src/Bank";
 import { Expression } from "@src/Expression";
 import { Money } from "@src/Money";
+import { Sum } from "@src/Sum";
 
 describe("simpleAddition", () => {
     test("test simple addition", () => {
@@ -11,6 +12,30 @@ describe("simpleAddition", () => {
         const reduced = bank.reduce(sum, "USD");
 
         expect(reduced).toEqual(Money.dollar(10));
+    });
+
+    test("test plus return num", () => {
+        const five = Money.dollar(5);
+        const result: Expression = five.plus(five);
+        const sum = result as Sum;
+
+        expect(sum.augend).toEqual(five);
+        expect(sum.addend).toEqual(five);
+    });
+
+    test("test reduce sum", () => {
+        const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+        const bank: Bank = new Bank();
+        const result = bank.reduce(sum, "USD");
+
+        expect(result).toEqual(Money.dollar(7));
+    });
+
+    test("test reduce Money", () => {
+        const bank: Bank = new Bank();
+        const result = bank.reduce(Money.dollar(1), "USD");
+
+        expect(result).toEqual(Money.dollar(1));
     });
 });
 

@@ -1,4 +1,5 @@
 import { Expression } from "./Expression";
+import { Sum } from "./Sum";
 
 export class Money implements Expression {
     protected _amount: number;
@@ -18,16 +19,20 @@ export class Money implements Expression {
     }
 
     public plus(addend: Money): Expression {
-        return new Money(this._amount + addend._amount, this._currency);
+        return new Sum(this, addend);
+    }
+
+    public reduce(to: String) {
+        return this;
     }
 
     get currency(): string {
         return this._currency;
     }
 
-    // public toString(): string {
-    //     return this._amount + " " + this._currency;
-    // }
+    get amount(): number {
+        return this._amount;
+    }
 
     public static dollar(amount: number): Money {
         return new Money(amount, "USD");
