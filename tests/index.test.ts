@@ -4,58 +4,75 @@ import { Money } from "@src/Money";
 import { Sum } from "@src/Sum";
 
 describe("simpleAddition", () => {
-    test("test simple addition", () => {
-        const five = Money.dollar(5);
-        const sum: Expression = five.plus(five);
-        const bank = new Bank();
+    describe("plus", () => {
+        test("test simple addition", () => {
+            const five = Money.dollar(5);
+            const sum: Expression = five.plus(five);
+            const bank = new Bank();
 
-        const reduced = bank.reduce(sum, "USD");
+            const reduced = bank.reduce(sum, "USD");
 
-        expect(reduced).toEqual(Money.dollar(10));
+            expect(reduced).toEqual(Money.dollar(10));
+        });
+
+        test("test plus return num", () => {
+            const five = Money.dollar(5);
+            const result: Expression = five.plus(five);
+            const sum = result as Sum;
+
+            expect(sum.augend).toEqual(five);
+            expect(sum.addend).toEqual(five);
+        });
+
+        test("test mixed addition", () => {
+            const fiveBuck: Expression = Money.dollar(5);
+            const tenFrancs: Expression = Money.franc(10);
+
+            const bank = new Bank();
+            bank.addRate("CHF", "USD", 2);
+            const result = bank.reduce(fiveBuck.plus(tenFrancs), "USD");
+
+            expect(result).toEqual(Money.dollar(10));
+        });
+
+        test("test Sum plus Money", () => {
+            const fiveBuck: Expression = Money.dollar(5);
+            const tenFrancs: Expression = Money.franc(10);
+
+            const bank = new Bank();
+            bank.addRate("CHF", "USD", 2);
+
+            const sum = new Sum(fiveBuck, tenFrancs).plus(fiveBuck);
+            const result = bank.reduce(sum, "USD");
+
+            expect(result).toEqual(Money.dollar(15));
+        });
     });
 
-    test("test mixed addition", () => {
-        const fiveBuck: Expression = Money.dollar(5);
-        const tenFrancs: Expression = Money.franc(10);
+    describe("Reduce", () => {
+        test("test reduce sum", () => {
+            const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
+            const bank: Bank = new Bank();
+            const result = bank.reduce(sum, "USD");
 
-        const bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
-        const result = bank.reduce(fiveBuck.plus(tenFrancs), "USD");
+            expect(result).toEqual(Money.dollar(7));
+        });
 
-        expect(result).toEqual(Money.dollar(10));
-    });
+        test("test reduce Money", () => {
+            const bank: Bank = new Bank();
+            const result = bank.reduce(Money.dollar(1), "USD");
 
-    test("test plus return num", () => {
-        const five = Money.dollar(5);
-        const result: Expression = five.plus(five);
-        const sum = result as Sum;
+            expect(result).toEqual(Money.dollar(1));
+        });
 
-        expect(sum.augend).toEqual(five);
-        expect(sum.addend).toEqual(five);
-    });
+        test("test reduce Money different currencies", () => {
+            const bank: Bank = new Bank();
+            bank.addRate("CHF", "USD", 2);
 
-    test("test reduce sum", () => {
-        const sum: Expression = new Sum(Money.dollar(3), Money.dollar(4));
-        const bank: Bank = new Bank();
-        const result = bank.reduce(sum, "USD");
+            const result = bank.reduce(Money.franc(2), "USD");
 
-        expect(result).toEqual(Money.dollar(7));
-    });
-
-    test("test reduce Money", () => {
-        const bank: Bank = new Bank();
-        const result = bank.reduce(Money.dollar(1), "USD");
-
-        expect(result).toEqual(Money.dollar(1));
-    });
-
-    test("test reduce Money different currencies", () => {
-        const bank: Bank = new Bank();
-        bank.addRate("CHF", "USD", 2);
-
-        const result = bank.reduce(Money.franc(2), "USD");
-
-        expect(result).toEqual(Money.dollar(1));
+            expect(result).toEqual(Money.dollar(1));
+        });
     });
 });
 
@@ -89,5 +106,18 @@ describe("Multiplication", () => {
         const five = Money.franc(5);
         expect(five.times(2)).toEqual(Money.franc(10));
         expect(five.times(3)).toEqual(Money.franc(15));
+    });
+
+    test("test sum times", () => {
+        const fiveBuck: Expression = Money.dollar(5);
+        const tenFrancs: Expression = Money.franc(10);
+
+        const bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+
+        const sum = new Sum(fiveBuck, tenFrancs).times(2);
+        const result = bank.reduce(sum, "USD");
+
+        expect(result).toEqual(Money.dollar(20));
     });
 });
