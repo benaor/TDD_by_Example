@@ -37,6 +37,15 @@ describe("simpleAddition", () => {
 
         expect(result).toEqual(Money.dollar(1));
     });
+
+    test("test reduce Money different currencies", () => {
+        const bank: Bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+
+        const result = bank.reduce(Money.franc(2), "USD");
+
+        expect(result).toEqual(Money.dollar(1));
+    });
 });
 
 describe("Equality", () => {
@@ -44,6 +53,10 @@ describe("Equality", () => {
         expect(Money.dollar(5).equals(Money.dollar(5))).toBeTruthy();
         expect(Money.dollar(5).equals(Money.dollar(6))).toBeFalsy();
         expect(Money.franc(5).equals(Money.dollar(5))).toBeFalsy();
+    });
+
+    test("test Identity Rate", () => {
+        expect(new Bank().rate("USD", "USD")).toEqual(1);
     });
 });
 

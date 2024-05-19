@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1715946853620" clover="3.2.0">
-  <project timestamp="1715946853620" name="All files">
-    <metrics statements="20" coveredstatements="20" conditionals="2" coveredconditionals="2" methods="12" coveredmethods="12" elements="34" coveredelements="34" complexity="0" loc="20" ncloc="20" packages="1" files="3" classes="3"/>
+<coverage generated="1716146479126" clover="3.2.0">
+  <project timestamp="1716146479126" name="All files">
+    <metrics statements="31" coveredstatements="31" conditionals="3" coveredconditionals="3" methods="17" coveredmethods="17" elements="51" coveredelements="51" complexity="0" loc="31" ncloc="31" packages="1" files="4" classes="4"/>
     <file name="Bank.ts" path="/Users/benjamin/Code/TDD-by-examples/src/Bank.ts">
-      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="4" count="1" type="stmt"/>
-      <line num="6" count="3" type="stmt"/>
+      <metrics statements="8" coveredstatements="8" conditionals="1" coveredconditionals="1" methods="4" coveredmethods="4"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="6" count="5" type="stmt"/>
+      <line num="9" count="4" type="stmt"/>
+      <line num="13" count="3" type="cond" truecount="1" falsecount="0"/>
+      <line num="14" count="1" type="stmt"/>
+      <line num="15" count="1" type="stmt"/>
+      <line num="19" count="1" type="stmt"/>
     </file>
     <file name="Money.ts" path="/Users/benjamin/Code/TDD-by-examples/src/Money.ts">
-      <metrics statements="12" coveredstatements="12" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="4" count="1" type="stmt"/>
-      <line num="9" count="28" type="stmt"/>
-      <line num="10" count="28" type="stmt"/>
-      <line num="14" count="3" type="cond" truecount="2" falsecount="0"/>
-      <line num="18" count="4" type="stmt"/>
-      <line num="22" count="2" type="stmt"/>
-      <line num="26" count="1" type="stmt"/>
-      <line num="30" count="4" type="stmt"/>
-      <line num="34" count="4" type="stmt"/>
-      <line num="38" count="17" type="stmt"/>
-      <line num="42" count="5" type="stmt"/>
+      <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="9" coveredmethods="9"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
+      <line num="10" count="32" type="stmt"/>
+      <line num="11" count="32" type="stmt"/>
+      <line num="15" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="19" count="4" type="stmt"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="27" count="2" type="stmt"/>
+      <line num="28" count="2" type="stmt"/>
+      <line num="32" count="4" type="stmt"/>
+      <line num="36" count="4" type="stmt"/>
+      <line num="40" count="18" type="stmt"/>
+      <line num="44" count="6" type="stmt"/>
+    </file>
+    <file name="Pair.ts" path="/Users/benjamin/Code/TDD-by-examples/src/Pair.ts">
+      <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="6" count="2" type="stmt"/>
+      <line num="7" count="2" type="stmt"/>
+      <line num="11" count="2" type="stmt"/>
     </file>
     <file name="Sum.ts" path="/Users/benjamin/Code/TDD-by-examples/src/Sum.ts">
       <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="4" count="1" type="stmt"/>
-      <line num="9" count="3" type="stmt"/>
+      <line num="3" count="1" type="stmt"/>
+      <line num="5" count="1" type="stmt"/>
       <line num="10" count="3" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
+      <line num="11" count="3" type="stmt"/>
       <line num="15" count="2" type="stmt"/>
+      <line num="16" count="2" type="stmt"/>
     </file>
   </project>
 </coverage>
