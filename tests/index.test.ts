@@ -14,6 +14,17 @@ describe("simpleAddition", () => {
         expect(reduced).toEqual(Money.dollar(10));
     });
 
+    test("test mixed addition", () => {
+        const fiveBuck: Expression = Money.dollar(5);
+        const tenFrancs: Expression = Money.franc(10);
+
+        const bank = new Bank();
+        bank.addRate("CHF", "USD", 2);
+        const result = bank.reduce(fiveBuck.plus(tenFrancs), "USD");
+
+        expect(result).toEqual(Money.dollar(10));
+    });
+
     test("test plus return num", () => {
         const five = Money.dollar(5);
         const result: Expression = five.plus(five);

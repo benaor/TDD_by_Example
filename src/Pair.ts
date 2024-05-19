@@ -10,8 +10,4 @@ export class Pair {
     get id(): string {
         return `${this._from}:${this._to}`;
     }
-
-    // equals(pair: Pair): boolean {
-    //     return pair.id === this.id;
-    // }
 }
